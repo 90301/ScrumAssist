@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ScrumAssist.Data;
+using ScrumAssist.Static;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ScrumAssist.Pages;
 
 namespace ScrumAssist
 {
@@ -20,9 +23,18 @@ namespace ScrumAssist
     /// </summary>
     public partial class MainWindow : Window
     {
+
         public MainWindow()
         {
             InitializeComponent();
+            DataHolder.ConnectToSqlDatabase();
+
+        }
+
+        private void OpenDataEditorBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var editor = new DataEditorWindow();
+            editor.Show();
         }
     }
 }

@@ -5,8 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ScrumAssist"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Scrum Assist" Height="450" Width="800">
     <Grid>
-        
+        <TabControl>
+            <TabItem Header="Standup">
+                <Grid Background="#FFE5E5E5">
+                    <TextBox x:Name="MainText" Margin="215,10,10,10" TextWrapping="Wrap" Text="MainText" AcceptsReturn="True" AcceptsTab="True"/>
+                    <ComboBox x:Name="TeamSelection" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="200"/>
+                    <ListBox x:Name="DevelopersOnTeam" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,37,0,10" HorizontalAlignment="Left" Width="200"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Settings">
+                <Grid Background="#FFE5E5E5">
+                    <Button x:Name="OpenDataEditorBtn" Content="Data Editor" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Click="OpenDataEditorBtn_Click"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>

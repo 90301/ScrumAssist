@@ -1,0 +1,45 @@
+﻿<Window x:Class="ScrumAssist.Pages.DataEditorWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ScrumAssist.Pages" xmlns:c="clr-namespace:ScrumAssist.Data"
+        mc:Ignorable="d"
+        Title="DataEditor" Height="450" Width="800">
+    <Grid>
+        <Grid.Resources>
+            <c:Organization x:Key="currentOrganization"/>
+        </Grid.Resources>
+        <TabControl>
+            <TabItem Header="Teams">
+                <Grid Background="#FFE5E5E5" x:Name="TeamEditorGrid">
+                    <Grid.Resources>
+                        <c:Team x:Key="currentTeamSource"/>
+                    </Grid.Resources>
+                    <Grid.DataContext>
+                        <Binding Source="{StaticResource currentTeamSource}" />
+                    </Grid.DataContext>
+                    <TextBox x:Name="TeamNameTextbox" HorizontalAlignment="Left" Margin="397,10,0,0" TextWrapping="Wrap" Text="{Binding Path=Name, Mode=TwoWay}" VerticalAlignment="Top" Width="120"/>
+                    <Button x:Name="SaveTeamBtn" Content="Save" Margin="0,0,10,10" HorizontalAlignment="Right" Width="29" Height="20" VerticalAlignment="Bottom" RenderTransformOrigin="0.422,0.562" Click="SaveTeamBtn_Click"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Developers">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.Resources>
+                        <c:Developer x:Key="currentDevSource"/>
+                    </Grid.Resources>
+                    <Grid.DataContext>
+                        <Binding Source="{StaticResource currentDevSource}" />
+                    </Grid.DataContext>
+                    <TextBox x:Name="DeveloperNameTextbox" Margin="0,10,277,0" TextWrapping="Wrap" Text="{Binding Path=Name, Mode=TwoWay}" VerticalAlignment="Top" HorizontalAlignment="Right" Width="120"/>
+                    <ListBox x:Name="DeveloperTeamList" d:ItemsSource="{Binding Path=TeamsOn}" Margin="0,33,258,0" Height="104" VerticalAlignment="Top" HorizontalAlignment="Right" Width="139"/>
+                    <Button x:Name="RemoveTeamBtn" Content="Remove Team" Margin="0,35,175,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="78"/>
+                    <Button x:Name="AddTeamBtn" Content="Add Team" Margin="0,142,196,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="57"/>
+                    <ComboBox x:Name="AddTeamComboBox" Margin="0,142,258,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="139"/>
+                    <Button Content="Save" Margin="0,0,10,10" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="40"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
+
+    </Grid>
+</Window>
