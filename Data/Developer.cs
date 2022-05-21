@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,6 @@ namespace ScrumAssist.Data
         /// <summary>
         /// This is a shorthand way to get all the teams a given developer is on
         /// </summary>
-        public List<Team> TeamsOn { get; set; }
+        public BindingList<Team> TeamsOn { get; set; } = new BindingList<Team>();
     }
 }

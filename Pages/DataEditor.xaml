@@ -15,12 +15,15 @@
                 <Grid Background="#FFE5E5E5" x:Name="TeamEditorGrid">
                     <Grid.Resources>
                         <c:Team x:Key="currentTeamSource"/>
+                        <c:Team  x:Key="allTeams"/>
                     </Grid.Resources>
                     <Grid.DataContext>
                         <Binding Source="{StaticResource currentTeamSource}" />
                     </Grid.DataContext>
-                    <TextBox x:Name="TeamNameTextbox" HorizontalAlignment="Left" Margin="397,10,0,0" TextWrapping="Wrap" Text="{Binding Path=Name, Mode=TwoWay}" VerticalAlignment="Top" Width="120"/>
+                    <TextBox x:Name="TeamNameTextbox" Margin="0,25,277,0" TextWrapping="Wrap" Text="{Binding Path=Name, Mode=TwoWay}" VerticalAlignment="Top" HorizontalAlignment="Right" Width="120"/>
                     <Button x:Name="SaveTeamBtn" Content="Save" Margin="0,0,10,10" HorizontalAlignment="Right" Width="29" Height="20" VerticalAlignment="Bottom" RenderTransformOrigin="0.422,0.562" Click="SaveTeamBtn_Click"/>
+                    <Label Content="Team Name" Margin="0,-1,324,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="73"/>
+                    <ListBox x:Name="AllTeamsListBox" HorizontalAlignment="Left" Margin="10,10,0,10" Width="251" d:ItemsSource="{Binding Source=DataHolder.AllTeams, Mode=OneWay,NotifyOnSourceUpdated=True}"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Developers">
@@ -31,12 +34,13 @@
                     <Grid.DataContext>
                         <Binding Source="{StaticResource currentDevSource}" />
                     </Grid.DataContext>
-                    <TextBox x:Name="DeveloperNameTextbox" Margin="0,10,277,0" TextWrapping="Wrap" Text="{Binding Path=Name, Mode=TwoWay}" VerticalAlignment="Top" HorizontalAlignment="Right" Width="120"/>
-                    <ListBox x:Name="DeveloperTeamList" d:ItemsSource="{Binding Path=TeamsOn}" Margin="0,33,258,0" Height="104" VerticalAlignment="Top" HorizontalAlignment="Right" Width="139"/>
+                    <TextBox x:Name="DeveloperNameTextbox" Margin="0,6,207,0" TextWrapping="Wrap" Text="{Binding Path=Name, Mode=TwoWay}" VerticalAlignment="Top" HorizontalAlignment="Right" Width="120"/>
+                    <ListBox x:Name="DeveloperTeamList" d:ItemsSource="{Binding Path=TeamsOn, BindsDirectlyToSource=True, NotifyOnSourceUpdated=True}" Margin="0,33,258,0" Height="104" VerticalAlignment="Top" HorizontalAlignment="Right" Width="139"/>
                     <Button x:Name="RemoveTeamBtn" Content="Remove Team" Margin="0,35,175,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="78"/>
-                    <Button x:Name="AddTeamBtn" Content="Add Team" Margin="0,142,196,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="57"/>
+                    <Button x:Name="AddTeamBtn" Content="Add Team" Margin="0,142,196,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="57" Click="AddTeamBtn_Click"/>
                     <ComboBox x:Name="AddTeamComboBox" Margin="0,142,258,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="139"/>
-                    <Button Content="Save" Margin="0,0,10,10" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="40"/>
+                    <Button x:Name="SaveDevBtn" Content="Save" Margin="0,0,10,10" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="40" Click="SaveDevBtn_Click"/>
+                    <Label Content="Dev Name" Margin="0,2,332,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="65"/>
                 </Grid>
             </TabItem>
         </TabControl>

@@ -1,6 +1,7 @@
 ﻿using ScrumAssist.Data;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -11,24 +12,34 @@ namespace ScrumAssist.Static
     public static class DataHolder
     {
 
-        public static List<Team> AllTeams = new List<Team>();
-        public static List<Developer> DevelopersOnTeam = new List<Developer>();
+        public static BindingList<Team> AllTeams = new BindingList<Team>();
+        public static BindingList<Developer> DevelopersOnTeam = new BindingList<Developer>();
 
         /// <summary>
         /// Move this to a config file
         /// </summary>
         public static string connString = @"Address=localhost;Integrated Security=True; Connect Timeout=30";
-
+        public static SqlConnection sql = new SqlConnection(connString);
         public static void ConnectToSqlDatabase()
         {
             //SqliteConnectionStringBuilder builder = new SqliteConnectionStringBuilder();
-            SqlConnection sql = new SqlConnection(connString);
+            
             sql.Open();
+        }
 
-
-
-
+        public static void DisconnectSql()
+        {
             sql.Close();
+        }
+
+        public static void addTeam(Team currentTeam)
+        {
+            AllTeams.Add(currentTeam);
+        }
+
+        internal static void addDeveloper(Developer currentDeveloper)
+        {
+            throw new NotImplementedException();
         }
     }
 }

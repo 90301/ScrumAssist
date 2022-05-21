@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using ScrumAssist.Data;
+using ScrumAssist.Static;
 
 namespace ScrumAssist.Pages
 {
@@ -35,13 +36,42 @@ namespace ScrumAssist.Pages
             currentTeam.Name = "A test";
 
             TeamEditorGrid.DataContext = currentTeam;
+            //Binding allTeamsBinding = new Binding("allTeams");
+
+            //allTeamsBinding.Mode = BindingMode.OneWay;
+            //allTeamsBinding.Source = DataHolder.AllTeams;
+
+            AllTeamsListBox.ItemsSource = DataHolder.AllTeams;
+            AddTeamComboBox.ItemsSource = DataHolder.AllTeams;
+
             DeveloperNameTextbox.DataContext = currentDeveloper;
 
         }
 
         private void SaveTeamBtn_Click(object sender, RoutedEventArgs e)
         {
-            currentTeam.Name = "Test Set";
+            DataHolder.addTeam(currentTeam);
+            currentTeam = new Team();
+            setValues();
+
+        }
+
+        private void AddTeamBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (AddTeamComboBox.SelectedItem != null)
+            {
+                currentDeveloper.TeamsOn.Add((Team)AddTeamComboBox.SelectedItem);
+                DeveloperTeamList.ItemsSource = currentDeveloper.TeamsOn;
+            }
+
+        }
+
+        private void SaveDevBtn_Click(object sender, RoutedEventArgs e)
+        {
+            //Save the dev
+            DataHolder.addDeveloper(currentDeveloper);
+            currentDeveloper = new Developer();
+            setValues();
         }
     }
 }
